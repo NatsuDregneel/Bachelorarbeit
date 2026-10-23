@@ -155,7 +155,10 @@ export default defineComponent({
                                 const ctx = context.filter(
                                     (context_) => context_.datasetIndex <= 2)
                                 if (ctx.length === 0) return
-                                const t0: number = ctx[0].parsed.x
+                                // | null hinzugefügt aufgrund von Fehlermeldung: "Object is possibly 'null'." in VSCode
+                                const t0: number | null = ctx[0].parsed.x
+                                // Hinzugefügt aufgrund von Fehlermeldung: "Object is possibly 'null'." in VSCode
+                                if (t0 == null) return
                                 const output = component.controllerOutput.filter(
                                     (entry: any) => entry.t.valueOf() === t0)
                                 if (output.length) {

@@ -1,0 +1,41 @@
+<script setup lang="ts">
+    import { getActiveStreak } from '../../storage/streak.js'
+
+</script>
+
+<template>
+    <div style="display: grid; justify-items: center;">
+        <div class="container">
+            <!-- Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="125px" height="125px" viewBox="0 0 24 24">
+                <path d="M0 0h24v24H0z" fill="none" />
+                <path fill="#f29d38" d="M12.063 2.065a.67.67 0 0 0-.759.149a.8.8 0 0 0-.205.738c.099.44.151.9.151 1.37c0 1.076-.271 1.83-.738 2.455c-.474.635-1.16 1.152-2.027 1.735a.3.3 0 0 0-.038.031l-.105.106a6.75 6.75 0 1 0 9.685 2.63a.25.25 0 0 0-.413-.05l-.208.241c-.878 1.026-1.587 1.855-3.04 2.225c-.062.015-.1.004-.127-.013a.24.24 0 0 1-.091-.124a.41.41 0 0 1 .074-.414c.777-.843 1.329-1.987 1.526-3.614c.37-3.048-1.015-6.294-3.685-7.465" />
+            </svg>
+            <!-- Streak Zahl -->
+            <p class="streakcounter">{{ getActiveStreak() }}</p>
+        </div>
+        <!-- Streak Text -->
+        <span style="font-size: 30px; color: #f29d38; font-weight: bold;">{{ getActiveStreak() === 1 ? 'Tag Streak' : 'Tage Streak' }}</span>
+    </div>
+</template>
+
+<style scoped>
+.container {
+    position: relative;
+    display: inline-block;
+}
+
+.streakcounter {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 45px;
+
+    font-size: 35px;
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+}
+</style>

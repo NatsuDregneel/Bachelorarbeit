@@ -13,8 +13,15 @@ export function glucoseColorLine(ctx: ScriptableContext<"line">) {
 }
 
 export function glucoseColorLineSegment(ctx: ScriptableLineSegmentContext) {
-    const mn = Math.min(ctx.p0.parsed.y, ctx.p1.parsed.y)
-    const mx = Math.max(ctx.p0.parsed.y, ctx.p1.parsed.y)
+    //Hinzugefügt wegen Fehlermeldung
+    const values = [ctx.p0.parsed.y, ctx.p1.parsed.y]
+        .filter((v): v is number => v != null)
+    //Hinzugefügt wegen Fehlermeldung
+    if (values.length === 0)
+        return glucoseColor(null)
+    // Code geändert aufgrund von Fehlermeldung
+    const mn = Math.min(...values)
+    const mx = Math.max(...values)
 
     if (mn < 54)
         return glucoseColor(mn)
@@ -26,7 +33,12 @@ export function glucoseColorLineSegment(ctx: ScriptableLineSegmentContext) {
     return glucoseColor(mx)
 }
 
-export default function glucoseColor(value: number): string {
+export default function glucoseColor(value: number | null | undefined): string {
+    //Hinzugefügt wegen Fehlermeldung
+    if (value == null){
+        return 'rgb(120,176,89,1)'  	// target
+    }
+    
     if (value < 54)
         return 'rgb(140,25,22,1)'	// very low
     if (value < 70)

@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="./styles/LT1style.css" />
     </head>
 	<body>
+<% if (appid !== 'app') { %>
 		<p style="text-align:center;">
 			<a href="https://lt1.org/" target="_blank">
 				<img alt="LoopInsighT1 Logo" 
@@ -22,6 +23,7 @@
 			</a>
 		</p>
 		<hr/>
+<% } %>
 		<div id="<%= appid %>">
             <style lang="css">
                 #loading {

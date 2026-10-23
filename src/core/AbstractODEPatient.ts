@@ -102,7 +102,7 @@ export function createPatientFromODE
             return this._patient.getState()
         }
 
-        getNextUpdateTime() {
+        getNextUpdateTime(): Date | undefined { // Date | undefined hinzugefüg wegen Fehlermeldung
             // no intrinsic stops required
             return undefined
         }
