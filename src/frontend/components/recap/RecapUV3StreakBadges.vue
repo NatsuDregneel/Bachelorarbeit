@@ -73,8 +73,8 @@
         display: grid;
         grid-template-columns: 1fr 3fr;
         grid-template-rows: repeat(3, minmax(0, 1fr));
-        column-gap: 20px;
-        row-gap: 20px;
+        column-gap: 25px;
+        row-gap: 25px;
         width: 100%;
         box-sizing: border-box;
     }
@@ -103,7 +103,7 @@
         grid-column: 1;
         grid-row: 1 / 4;
         flex-direction: column;
-        gap: 20px;
+        gap: 25px;
     }
 
     .right {
@@ -128,7 +128,7 @@
     .ranking-cards {
         display: flex;
         width: 100%;
-        gap: 20px;
+        gap: 25px;
         min-height: 0;
     }
 

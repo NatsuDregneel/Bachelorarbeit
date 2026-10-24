@@ -39,7 +39,7 @@
 .badges {
     display: grid; 
     justify-items: center;
-    gap: 50px;
+    gap: 25px;
     border: solid;
     border-color: #b7b7b7;
     padding: 25px;
