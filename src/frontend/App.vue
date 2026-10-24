@@ -1,7 +1,11 @@
 <script lang="ts">
-    import { defineComponent } from 'vue'
+    import { defineComponent, watchEffect } from 'vue'
     import Navbar from './components/Navbar.vue'
     import StreakBanner from './components/streaks/StreakBanner.vue';
+    import { checkRecapReached } from './storage/recap.js'
+    import { getActiveStreak } from './storage/streak.js'
+
+    watchEffect(() => checkRecapReached(getActiveStreak())) 
 
     export default defineComponent({
         components: {

@@ -3,8 +3,7 @@
     import RecapNotUnlocked from '../components/recap/RecapNotUnlocked.vue';
     import RecapStreakBadges from '../components/recap/RecapStreakBadges.vue';
     import Badges from '../components/badges/Badges.vue';
-    
-
+    import { recapAvailable } from '../storage/recap.js';
 </script>
 
 <template>
@@ -12,7 +11,8 @@
         <!-- Flex Layout  -->
         <Streaks class="card" style="flex: 1;"/>
         <div class="flexRechts" style="flex: 2;">
-            <RecapStreakBadges class="card" style="flex: 1;"/>
+            <RecapStreakBadges v-if="recapAvailable" class="card" style="flex: 1;"/>
+            <RecapNotUnlocked v-else class="card" style="flex: 1;"/>
             <Badges class="card" style="flex: 1;"/>
         </div>
     </div>
