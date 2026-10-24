@@ -11,6 +11,7 @@
             :current="badge.currentNumber"
             :target="badge.maxNumber"
             :color="badge.color"
+            :unlocked-at="badge.unlockedAt"
         />
     </div>
     <p v-else style="text-align: center;">Es wurden noch keine Abzeichen freigeschaltet.</p>

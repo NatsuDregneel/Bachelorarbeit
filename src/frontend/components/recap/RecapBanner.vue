@@ -31,7 +31,7 @@
 <style scoped>
     .banner {
         position: fixed;
-        top: 90px;
+        top: 20px;
         left: 50%;
         transform: translateX(-50%);
         background-color: #fff;

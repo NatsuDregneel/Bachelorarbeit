@@ -20,7 +20,7 @@
                 <BadgeInfo />
             </div>
         </div>
-        <div>
+        <div class="badge-content">
             <!-- Badges -->
              <BadgesOpen v-if="BadgeProperty === 'open'" />
              <BadgesUnlocked v-if="BadgeProperty === 'unlocked'" />
@@ -38,11 +38,22 @@
 
 .badges {
     display: grid; 
+    grid-template-rows: auto minmax(0, 1fr);
     justify-items: center;
     gap: 25px;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
     border: solid;
     border-color: #b7b7b7;
     padding: 25px;
+    box-sizing: border-box;
+}
+
+.badge-content {
+    width: 100%;
+    min-height: 0;
+    overflow-y: auto;
 }
 
 .buttons {

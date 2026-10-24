@@ -23,6 +23,7 @@
         display: flex;
         gap: 50px;
         padding: 25px;
+        height: max-content;
         min-height: 80vh;
         box-sizing: border-box;
     }

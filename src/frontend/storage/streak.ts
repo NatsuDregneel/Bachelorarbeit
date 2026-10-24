@@ -1,4 +1,6 @@
 import { reactive, ref } from 'vue'
+import { badges } from './badges.js'
+import { unlockIfReached } from './badgeUnlockedDate.js'
 
 const STORAGE_KEY = 'streak-state'
 
@@ -52,6 +54,15 @@ export function getActiveStreak(): number {
 export const streakState = reactive<StreakState>(load())
 export const streakIncreaseVersion = ref(0)
 
+function unlockReachedStreakBadges(now: Date = new Date()): void {
+    const streak = getStreakRange(now) ? streakState.count : 0
+    for (const badge of badges.filter(({ id }) => /^Streak[1-4]$/.test(id))) {
+        unlockIfReached(badge.id, streak, badge.maxNumber)
+    }
+}
+
+unlockReachedStreakBadges()
+
 /** call when the user adds a meal or exercise */
 export function registerActivity(now: Date = new Date()): void {
     const today = dayKey(now)
@@ -70,4 +81,5 @@ export function registerActivity(now: Date = new Date()): void {
     try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(streakState))
     } catch { /* ignore */ }
+    unlockReachedStreakBadges(now)
 }

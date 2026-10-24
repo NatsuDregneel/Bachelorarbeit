@@ -120,34 +120,10 @@ export const badges: BadgeData[] = [
     {
         id: 'Sport4',
         title: 'Pumper',
-        description: 'Trage jede Phase eine Sportaktivität ein.',
+        description: 'Trage 6 Sportaktivitäten ein.',
         tier: 'gold',
         currentNumber: 0,
-        maxNumber: 3,
-    },
-    {
-        id: 'experiment1',
-        title: 'Experiment Neuling',
-        description: 'Schließe die erste Studienphase UV1 ab.',
-        tier: 'blue',
-        currentNumber: 0,
-        maxNumber: 1,
-    },
-    {
-        id: 'experiment2',
-        title: 'Experiment Anfänger',
-        description: 'Schließe die zweite Studienphase UV2 ab.',
-        tier: 'bronze',
-        currentNumber: 0,
-        maxNumber: 1,
-    },
-    {
-        id: 'experiment3',
-        title: 'Experiment Profi',
-        description: 'Schließe die dritte Studienphase UV3 ab.',
-        tier: 'silver',
-        currentNumber: 0,
-        maxNumber: 1,
+        maxNumber: 6,
     },
     {
         id: 'badges1',
@@ -176,9 +152,9 @@ export const badges: BadgeData[] = [
     {
         id: 'badges4',
         title: 'Perfektionist',
-        description: 'Schalte alle Abzeichen frei.',
+        description: 'Schalte alle anderen Abzeichen frei.',
         tier: 'gold',
         currentNumber: 0,
-        maxNumber: 20,
+        maxNumber: 16,
     },
 ]

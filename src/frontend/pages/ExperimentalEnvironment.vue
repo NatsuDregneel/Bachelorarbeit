@@ -29,6 +29,8 @@ import Exercise from '../../types/Exercise.js'
 import Meal from '../../types/Meal.js'
 import Simulator, { SimulatorOptions } from '../../core/Simulator.js'
 import { registerActivity } from '../storage/streak.js'
+import { registerMealsEntered } from '../storage/mealBadgeProgress.js'
+import { registerSportsEntered } from '../storage/sportBadgeProgress.js'
 
 
 // prepare simulator
@@ -178,12 +180,18 @@ export default defineComponent({
             }
         },
         mealsChanged(newMeals: Meal[]) {
-            if (newMeals.length > this.mealCount) registerActivity()
+            if (newMeals.length > this.mealCount) {
+                registerActivity()
+                registerMealsEntered(newMeals.length - this.mealCount)
+            }
             this.mealCount = newMeals.length
             this.meals = newMeals
         },
         exercisesChanged(newExercises: Exercise[]) {
-            if (newExercises.length > this.exerciseCount) registerActivity()
+            if (newExercises.length > this.exerciseCount) {
+                registerActivity()
+                registerSportsEntered(newExercises.length - this.exerciseCount)
+            }
             this.exerciseCount = newExercises.length
             this.exerciseUnits = newExercises
         },

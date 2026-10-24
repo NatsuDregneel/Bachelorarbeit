@@ -13,7 +13,7 @@
             :color="badge.color"
         />
     </div>
-    <p v-else style="text-align: center;">Es wurden noch keine Abzeichen freigeschaltet.</p>
+    <p v-else style="text-align: center;">Du hast eine unglaubliche Leistung gezeigt und alle Abzeichen sind bereits freigeschaltet! </p>
 </template>
 
 <style scoped>
