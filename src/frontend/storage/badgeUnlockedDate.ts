@@ -1,7 +1,8 @@
 import { reactive, ref } from 'vue'
 import { badges } from './badges.js'
+import { storageKey } from './storageKey.js'
 
-const STORAGE_KEY = 'badge-unlocks'
+const STORAGE_KEY = storageKey('badge-unlocks')
 
 function load(): Record<string, string> {
     try {

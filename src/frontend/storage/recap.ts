@@ -1,7 +1,8 @@
 import { computed, reactive, ref } from 'vue'
 import { dayKey } from './streak.js'
+import { storageKey } from './storageKey.js'
 
-const STORAGE_KEY = 'recap-state'
+const STORAGE_KEY = storageKey('recap-state')
 export const RECAP_STREAK_TARGET = 12
 
 interface RecapState {

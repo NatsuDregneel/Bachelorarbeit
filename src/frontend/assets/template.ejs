@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8" />
-		<title>LT1 - Diabetes Simulation</title>
+		<title>Gamified AID Environment</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="author" content="Heiko Peuscher" />
 		<style>
@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="./styles/LT1style.css" />
     </head>
 	<body>
-<% if (appid !== 'app') { %>
+<% if (!appid.startsWith('group')) { %>
 		<p style="text-align:center;">
 			<a href="https://lt1.org/" target="_blank">
 				<img alt="LoopInsighT1 Logo" 

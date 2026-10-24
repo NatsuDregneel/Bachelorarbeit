@@ -1,8 +1,9 @@
 import { reactive, ref } from 'vue'
 import { badges } from './badges.js'
 import { unlockIfReached } from './badgeUnlockedDate.js'
+import { storageKey } from './storageKey.js'
 
-const STORAGE_KEY = 'streak-state'
+const STORAGE_KEY = storageKey('streak-state')
 
 interface StreakState {
     count: number

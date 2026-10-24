@@ -1,8 +1,9 @@
 import { ref } from 'vue'
 import { badges } from './badges.js'
 import { unlockIfReached } from './badgeUnlockedDate.js'
+import { storageKey } from './storageKey.js'
 
-const STORAGE_KEY = 'meal-badge-count'
+const STORAGE_KEY = storageKey('meal-badge-count')
 
 function loadMealEntryCount(): number {
     try {
