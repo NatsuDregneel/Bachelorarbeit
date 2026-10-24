@@ -2,6 +2,8 @@
     import Streaks from '../components/streaks/Streaks.vue';
     import RecapNotUnlocked from '../components/recap/RecapNotUnlocked.vue';
     import RecapStreakBadges from '../components/recap/RecapStreakBadges.vue';
+    import Badges from '../components/badges/Badges.vue';
+    
 
 </script>
 

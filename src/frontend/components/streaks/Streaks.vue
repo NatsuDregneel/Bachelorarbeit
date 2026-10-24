@@ -30,10 +30,10 @@
                 Du hast noch keine aktive <span class="highlight">Streak</span>, trage eine <strong>Mahlzeit</strong>, <strong>Sporteinheit</strong> oder <strong>Bolus</strong> ein, um deine <span class="highlightedorange">Streak</span> zu starten!
             </p>
         </div>
-        <div>
+        <div class="calendar">
             <!-- Streak Kalender -->
              <p class="calendarTitle">Streak &Uumlbersicht</p>
-            <StreakCalendar />  
+            <StreakCalendar />
         </div>
     </div>
 </template>
@@ -44,6 +44,10 @@
         flex-direction: column;
         padding: 25px;
         gap: 90px;
+    }
+
+    .calendar {
+        margin-top: auto;
     }
 
     .title {
