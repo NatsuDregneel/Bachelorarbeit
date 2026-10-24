@@ -23,7 +23,42 @@
                 <div class="ranking-cards">
                     <div class="card">
                         <span class="title">Freigeschaltete Abzeichen</span>
-                        <p class="content">TODO</p>
+                        <div class="content">
+                            <div class="recapbadges">
+                                <div class="recapbadges">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24">
+                                    <path d="M0 0h24v24H0z" fill="none" />
+                                    <path fill="#5B87E6" d="M12 18c4.41 0 8-3.59 8-8s-3.59-8-8-8s-8 3.59-8 8s3.59 8 8 8" />
+                                    <path fill="#5B87E6" d="M7 17.48V21c0 .35.18.67.47.85s.66.2.97.04l3.55-1.78l3.55 1.78a.997.997 0 0 0 1.45-.89v-3.52c-1.43.96-3.15 1.52-5 1.52s-3.57-.56-5-1.52Z" />
+                                </svg>
+                                <p>0</p>
+                                </div>
+                                <div class="recapbadges">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24">
+                                        <path d="M0 0h24v24H0z" fill="none" />
+                                        <path fill="#D08A4A" d="M12 18c4.41 0 8-3.59 8-8s-3.59-8-8-8s-8 3.59-8 8s3.59 8 8 8" />
+                                        <path fill="#D08A4A" d="M7 17.48V21c0 .35.18.67.47.85s.66.2.97.04l3.55-1.78l3.55 1.78a.997.997 0 0 0 1.45-.89v-3.52c-1.43.96-3.15 1.52-5 1.52s-3.57-.56-5-1.52Z" />
+                                    </svg>
+                                    <p>0</p>
+                                </div>
+                                <div class="recapbadges">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24">
+                                        <path d="M0 0h24v24H0z" fill="none" />
+                                        <path fill="#C4C4C4" d="M12 18c4.41 0 8-3.59 8-8s-3.59-8-8-8s-8 3.59-8 8s3.59 8 8 8" />
+                                        <path fill="#C4C4C4" d="M7 17.48V21c0 .35.18.67.47.85s.66.2.97.04l3.55-1.78l3.55 1.78a.997.997 0 0 0 1.45-.89v-3.52c-1.43.96-3.15 1.52-5 1.52s-3.57-.56-5-1.52Z" />
+                                    </svg>
+                                    <p>2</p>
+                                </div>
+                                <div class="recapbadges">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24">
+                                        <path d="M0 0h24v24H0z" fill="none" />
+                                        <path fill="#F2C20F" d="M12 18c4.41 0 8-3.59 8-8s-3.59-8-8-8s-8 3.59-8 8s3.59 8 8 8" />
+                                        <path fill="#F2C20F" d="M7 17.48V21c0 .35.18.67.47.85s.66.2.97.04l3.55-1.78l3.55 1.78a.997.997 0 0 0 1.45-.89v-3.52c-1.43.96-3.15 1.52-5 1.52s-3.57-.56-5-1.52Z" />
+                                    </svg>
+                                    <p>4</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="card">
                         <span class="title">Längste Streak</span>
@@ -31,7 +66,7 @@
                             <svg class="streak-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
                                 <path fill="#f29d38" d="M12.063 2.065a.67.67 0 0 0-.759.149a.8.8 0 0 0-.205.738c.099.44.151.9.151 1.37c0 1.076-.271 1.83-.738 2.455c-.474.635-1.16 1.152-2.027 1.735a.3.3 0 0 0-.038.031l-.105.106a6.75 6.75 0 1 0 9.685 2.63a.25.25 0 0 0-.413-.05l-.208.241c-.878 1.026-1.587 1.855-3.04 2.225c-.062.015-.1.004-.127-.013a.24.24 0 0 1-.091-.124a.41.41 0 0 1 .074-.414c.777-.843 1.329-1.987 1.526-3.614c.37-3.048-1.015-6.294-3.685-7.465" />
                             </svg>
-                            4 Tage Streak
+                            12 Tage Streak
                         </p>
                     </div>
                     <div class="card">
@@ -164,5 +199,13 @@
     .list span:last-child {
         flex: 1;
         text-align: end;
+    }
+
+    .recapbadges {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
     }
 </style>

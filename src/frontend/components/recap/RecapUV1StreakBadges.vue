@@ -23,7 +23,42 @@
                 <div class="ranking-cards">
                     <div class="card">
                         <span class="title">Freigeschaltete Abzeichen</span>
-                        <p class="content">TODO</p>
+                        <div class="content">
+                            <div class="recapbadges">
+                                <div class="recapbadges">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24">
+                                    <path d="M0 0h24v24H0z" fill="none" />
+                                    <path fill="#5B87E6" d="M12 18c4.41 0 8-3.59 8-8s-3.59-8-8-8s-8 3.59-8 8s3.59 8 8 8" />
+                                    <path fill="#5B87E6" d="M7 17.48V21c0 .35.18.67.47.85s.66.2.97.04l3.55-1.78l3.55 1.78a.997.997 0 0 0 1.45-.89v-3.52c-1.43.96-3.15 1.52-5 1.52s-3.57-.56-5-1.52Z" />
+                                </svg>
+                                <p>5</p>
+                                </div>
+                                <div class="recapbadges">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24">
+                                        <path d="M0 0h24v24H0z" fill="none" />
+                                        <path fill="#D08A4A" d="M12 18c4.41 0 8-3.59 8-8s-3.59-8-8-8s-8 3.59-8 8s3.59 8 8 8" />
+                                        <path fill="#D08A4A" d="M7 17.48V21c0 .35.18.67.47.85s.66.2.97.04l3.55-1.78l3.55 1.78a.997.997 0 0 0 1.45-.89v-3.52c-1.43.96-3.15 1.52-5 1.52s-3.57-.56-5-1.52Z" />
+                                    </svg>
+                                    <p>3</p>
+                                </div>
+                                <div class="recapbadges">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24">
+                                        <path d="M0 0h24v24H0z" fill="none" />
+                                        <path fill="#C4C4C4" d="M12 18c4.41 0 8-3.59 8-8s-3.59-8-8-8s-8 3.59-8 8s3.59 8 8 8" />
+                                        <path fill="#C4C4C4" d="M7 17.48V21c0 .35.18.67.47.85s.66.2.97.04l3.55-1.78l3.55 1.78a.997.997 0 0 0 1.45-.89v-3.52c-1.43.96-3.15 1.52-5 1.52s-3.57-.56-5-1.52Z" />
+                                    </svg>
+                                    <p>0</p>
+                                </div>
+                                <div class="recapbadges">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24">
+                                        <path d="M0 0h24v24H0z" fill="none" />
+                                        <path fill="#F2C20F" d="M12 18c4.41 0 8-3.59 8-8s-3.59-8-8-8s-8 3.59-8 8s3.59 8 8 8" />
+                                        <path fill="#F2C20F" d="M7 17.48V21c0 .35.18.67.47.85s.66.2.97.04l3.55-1.78l3.55 1.78a.997.997 0 0 0 1.45-.89v-3.52c-1.43.96-3.15 1.52-5 1.52s-3.57-.56-5-1.52Z" />
+                                    </svg>
+                                    <p>0</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="card">
                         <span class="title">Längste Streak</span>
@@ -164,5 +199,13 @@
     .list span:last-child {
         flex: 1;
         text-align: end;
+    }
+
+    .recapbadges {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
     }
 </style>
