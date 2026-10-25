@@ -1,10 +1,14 @@
 <script lang="ts">
     import { defineComponent } from 'vue'
     import Navbar from '../components/Navbar.vue';
+    import AvatarSaveQuestion from '../components/avatar/AvatarSaveQuestion.vue'
+    import AvatarSavedBanner from '../components/avatar/AvatarSavedBanner.vue'
 
     export default defineComponent({
         components: {
-            Navbar
+            Navbar,
+            AvatarSaveQuestion,
+            AvatarSavedBanner
         },
         methods: {
             onMealAdded(n: number) {
@@ -20,6 +24,8 @@
 </script>
 
 <template>
+    <AvatarSaveQuestion />
+    <AvatarSavedBanner />
     <Navbar class="navbar"/>
     <router-view v-slot="{ Component }: { Component: any }">
         <KeepAlive>

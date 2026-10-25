@@ -1,4 +1,4 @@
-import { reactive, computed } from 'vue'
+import { reactive, computed, ref } from 'vue'
 import { storageKey } from './storageKey.js'
 import {
     skinColors, clothesColors, clothingOptions, hairOptions, hairColors,
@@ -88,6 +88,7 @@ function persist(): void {
 
 // saved avatar
 export const avatarState = reactive<StoredAvatar>(load())
+export const avatarSaveCount = ref(0)
 
 // working copy used by the creator
 export const avatarDraft = reactive<AvatarLook>({
@@ -112,6 +113,7 @@ export function updateDraft(changes: Partial<AvatarLook>): void {
 export function saveAvatar(): void {
     Object.assign(avatarState, avatarDraft)
     persist()
+    avatarSaveCount.value++
 }
 
 /** called by the quest system later, e.g. unlockItem('clothing-small') */
@@ -120,3 +122,24 @@ export function unlockItem(id: string): void {
     avatarState.unlockedItems.push(id)
     persist()
 }
+
+// all fields of the look; the draft has exactly these keys
+const lookKeys = Object.keys(avatarDraft) as (keyof AvatarLook)[]
+
+/** true as soon as the draft differs from the saved avatar */
+export const hasUnsavedChanges = computed(() =>
+    lookKeys.some(k => avatarDraft[k] !== avatarState[k]))
+
+/** throws the draft away and goes back to the saved avatar */
+export function resetDraft(): void {
+    for (const k of lookKeys) avatarDraft[k] = avatarState[k]
+}
+
+// native browser warning when the tab is closed or reloaded with unsaved changes;
+// browsers show their own generic text here, it cannot be customized
+window.addEventListener('beforeunload', (e) => {
+    if (hasUnsavedChanges.value) {
+        e.preventDefault()
+        e.returnValue = ''
+    }
+})
