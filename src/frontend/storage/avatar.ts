@@ -1,5 +1,6 @@
 import { reactive, computed, ref } from 'vue'
 import { storageKey } from './storageKey.js'
+import { registerAvatarQuestProgress } from './questProgress.js'
 import {
     skinColors, clothesColors, clothingOptions, hairOptions, hairColors,
     beardOptions, eyesOptions, noseOptions, mouthOptions, glassesOptions, headwearOptions
@@ -111,9 +112,11 @@ export function updateDraft(changes: Partial<AvatarLook>): void {
 }
 
 export function saveAvatar(): void {
+    const changed = hasUnsavedChanges.value
     Object.assign(avatarState, avatarDraft)
     persist()
     avatarSaveCount.value++
+    if (changed) registerAvatarQuestProgress()
 }
 
 /** called by the quest system later, e.g. unlockItem('clothing-small') */

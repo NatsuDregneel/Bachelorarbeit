@@ -18,7 +18,7 @@
             Navbar,
             StreakBanner,
             RecapBanner,
-            BadgeUnlockBanner
+            BadgeUnlockBanner,
         },
         methods: {
             onMealAdded(n: number) {

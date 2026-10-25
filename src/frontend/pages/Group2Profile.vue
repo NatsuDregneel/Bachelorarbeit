@@ -1,16 +1,20 @@
 <script setup lang="ts">
     import RecapNotUnlocked from '../components/recap/RecapNotUnlocked.vue';
+    import RecapQuestsAvatar from '../components/recap/RecapQuestsAvatar.vue';
     import { recapAvailable } from '../storage/recap.js';
     import Avatar from '../components/avatar/Avatar.vue';
+    import Quests from '../components/quests/Quests.vue';
 
 </script>
 
 <template>
     <div class="profile">
         <!-- Flex Layout  -->
-        <p class="card" style="flex: 1;">Quests</p>
+        <div class="card" style="flex: 1;">
+            <Quests />
+        </div>
         <div class="flexRechts" style="flex: 2;">
-            <p v-if="recapAvailable" class="card" style="flex: 1;">Recap Available</p>
+            <RecapQuestsAvatar v-if="recapAvailable" class="card" style="flex: 1;"/>
             <RecapNotUnlocked v-else class="card" style="flex: 1;"/>
             <Avatar class="card" style="flex: 1;" />
         </div>

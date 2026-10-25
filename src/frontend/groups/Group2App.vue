@@ -3,19 +3,24 @@
     import Navbar from '../components/Navbar.vue';
     import AvatarSaveQuestion from '../components/avatar/AvatarSaveQuestion.vue'
     import AvatarSavedBanner from '../components/avatar/AvatarSavedBanner.vue'
+    import RecapBanner from '../components/recap/RecapBanner.vue'
+    import QuestCompleteBanner from '../components/quests/QuestCompleteBanner.vue'
+    import { registerMealQuestProgress, registerSportQuestProgress } from '../storage/questProgress.js'
 
     export default defineComponent({
         components: {
             Navbar,
             AvatarSaveQuestion,
-            AvatarSavedBanner
+            AvatarSavedBanner,
+            RecapBanner,
+            QuestCompleteBanner,
         },
         methods: {
             onMealAdded(n: number) {
-                //TODO: Implementierung für Mahlzeiten Logik in Gruppe 2
+                registerMealQuestProgress(n)
             },
             onExerciseAdded(n: number) {
-                //TODO: Implementierung für Sport Logik in Gruppe 2
+                registerSportQuestProgress(n)
             },
         }
     })
@@ -26,6 +31,8 @@
 <template>
     <AvatarSaveQuestion />
     <AvatarSavedBanner />
+    <RecapBanner />
+    <QuestCompleteBanner />
     <Navbar class="navbar"/>
     <router-view v-slot="{ Component }: { Component: any }">
         <KeepAlive>

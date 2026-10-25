@@ -1,8 +1,14 @@
 <script setup lang="ts">
     import { ref } from 'vue';
+    import { registerShareQuestProgress } from '../storage/questProgress.js'
 
     // Variable die das Dropdown Menu anzeigt oder versteckt
     const showSocials = ref (false);
+
+    function shareProgress(): void {
+        registerShareQuestProgress()
+        showSocials.value = false
+    }
 
 </script>
 
@@ -12,9 +18,9 @@
         <button  @click="showSocials = !showSocials">Share</button>
         <!-- Sozial Networks wo geshared werden kann-->
         <div v-if="showSocials" class="socials">
-            <a>Per E-Mail teilen</a>
-            <a>Per SMS teilen</a>
-            <a>Auf Whatsapp teilen</a>
+            <a @click="shareProgress">Per E-Mail teilen</a>
+            <a @click="shareProgress">Per SMS teilen</a>
+            <a @click="shareProgress">Auf Whatsapp teilen</a>
         </div>
     </div> 
 </template>

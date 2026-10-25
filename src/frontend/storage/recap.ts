@@ -7,6 +7,7 @@ export const RECAP_STREAK_TARGET = 12
 
 interface RecapState {
     reachedDay: string | null   // day (YYYY-MM-DD) on which the streak reached the target
+    experimentQuestsReached: boolean
 }
 
 function load(): RecapState {
@@ -14,7 +15,7 @@ function load(): RecapState {
         const raw = localStorage.getItem(STORAGE_KEY)
         if (raw) return JSON.parse(raw)
     } catch { /* ignore broken storage */ }
-    return { reachedDay: null }
+    return { reachedDay: null, experimentQuestsReached: false }
 }
 
 export const recapState = reactive<RecapState>(load())
@@ -32,10 +33,20 @@ export function checkRecapReached(streak: number): void {
     } catch { /* ignore */ }
 }
 
+export function checkExperimentQuestsReached(meals: number, sports: number, avatarChanges: number): void {
+    if (recapState.experimentQuestsReached || meals < 24 || sports < 3 || avatarChanges < 3) return
+
+    recapState.experimentQuestsReached = true
+    try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(recapState))
+    } catch { /* ignore */ }
+}
+
 // target reached, but the day is not over yet
 export const recapPending = computed(() =>
     recapState.reachedDay !== null && today.value === recapState.reachedDay)
 
 // target reached on an earlier day: the button may appear
 export const recapAvailable = computed(() =>
-    recapState.reachedDay !== null && today.value > recapState.reachedDay)
+    recapState.experimentQuestsReached ||
+    (recapState.reachedDay !== null && today.value > recapState.reachedDay))
