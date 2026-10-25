@@ -7,7 +7,7 @@
 </script>
 
 <template>
-    <!-- Streak Info Button that opens a Infopanel-->
+    <!-- Badge Info Button that opens a Infopanel-->
      <div class="info">
         <button @click="showInfo= !showInfo">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">

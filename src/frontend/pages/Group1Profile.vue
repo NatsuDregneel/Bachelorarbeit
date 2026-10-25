@@ -24,7 +24,7 @@
         gap: 50px;
         padding: 25px;
         height: max-content;
-        min-height: 80vh;
+        min-height: 100vh;
         box-sizing: border-box;
     }
 

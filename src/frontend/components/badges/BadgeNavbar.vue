@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { active } from 'd3';
+    import { active } from 'd3';
 
     type BadgeProperty = 'open' | 'unlocked';
 
