@@ -1,14 +1,32 @@
 <script setup lang="ts">
-    import { ref } from 'vue';
+    import { onMounted, onUnmounted, ref } from 'vue';
     
      // Variable die die Informationen anzeigt oder versteckt
     const showInfo = ref (false);
+    const root = ref<HTMLElement | null>(null);
+
+    function onDocClick(e: MouseEvent): void {
+        if (showInfo.value && root.value && !root.value.contains(e.target as Node)) showInfo.value = false;
+    }
+
+    function onKey(e: KeyboardEvent): void {
+        if (e.key === 'Escape') showInfo.value = false;
+    }
+
+    onMounted(() => {
+        document.addEventListener('click', onDocClick);
+        document.addEventListener('keydown', onKey);
+    });
+    onUnmounted(() => {
+        document.removeEventListener('click', onDocClick);
+        document.removeEventListener('keydown', onKey);
+    });
     
 </script>
 
 <template>
     <!-- Streak Info Button that opens a Infopanel-->
-     <div class="info">
+     <div ref="root" class="info">
         <button @click="showInfo= !showInfo">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
                     <path d="M0 0h32v32H0z" fill="none" />
