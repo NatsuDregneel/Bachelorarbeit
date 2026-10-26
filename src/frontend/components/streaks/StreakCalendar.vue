@@ -11,7 +11,15 @@
 </script>
 
 <template>
-    <div style="background-color: #eeeffd; width: 100%;">
+    <div class="calendar">
         <VCalendar transparent borderless expanded :attributes="attrs" />
     </div>
 </template>
+
+<style scoped>
+    .calendar {
+        background-color: #eeeffd;
+        width: 100%;
+        border-radius: 10px;
+    }
+</style>

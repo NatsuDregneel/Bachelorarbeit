@@ -1,9 +1,27 @@
 <script setup lang="ts">
-    import { computed } from 'vue';
+    import { computed } from 'vue'
     import ShareBtn from '../ShareBtn.vue';
     import QuestInfo from './QuestInfo.vue';
     import DailyQuests from './DailyQuests.vue'
     import ExperimentQuests from './ExperimentQuests.vue'
+    import {
+        dailyMealQuestProgress, dailyShareQuestProgress, dailySportQuestProgress,
+        experimentAvatarQuestProgress, experimentMealQuestProgress, experimentShareQuestProgress,
+        experimentSportQuestProgress,
+    } from '../../storage/questProgress.js'
+
+    const completedDailyQuests = computed(() =>
+        Number(dailyMealQuestProgress.value >= 2) +
+        Number(dailySportQuestProgress.value >= 1) +
+        Number(dailyShareQuestProgress.value >= 1))
+    const completedExperimentQuests = computed(() =>
+        Number(experimentMealQuestProgress.value >= 24) +
+        Number(experimentSportQuestProgress.value >= 3) +
+        Number(experimentAvatarQuestProgress.value >= 3) +
+        Number(experimentShareQuestProgress.value >= 12))
+    const shareText = computed(() =>
+        `Ich habe ${completedDailyQuests.value} Tägliche Quests und ` +
+        `${completedExperimentQuests.value} Experiment-Quests in der Gamifizierten AID-Umgebung abgeschlossen!`)
 
 </script>
 
@@ -14,7 +32,7 @@
             <span class="title" style="flex: 4;">Quests</span>
             <!-- Streak Header Buttons -->
             <div style="flex: 1;" class="buttons">
-                <ShareBtn />
+                <ShareBtn :text="shareText" />
                 <QuestInfo />
             </div>
         </div>

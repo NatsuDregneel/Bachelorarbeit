@@ -54,6 +54,7 @@ export function getActiveStreak(): number {
 
 export const streakState = reactive<StreakState>(load())
 export const streakIncreaseVersion = ref(0)
+export const streakBannerVisible = ref(false)
 
 function unlockReachedStreakBadges(now: Date = new Date()): void {
     const streak = getStreakRange(now) ? streakState.count : 0

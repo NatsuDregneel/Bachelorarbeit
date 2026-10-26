@@ -18,7 +18,7 @@
             <span class="title">Experiment R&uumlblick</span>
             <RecapNavbar v-model="selectedPhase" />
             <div class="buttons">
-                <ShareBtn />
+                <ShareBtn text="Ich habe meinen Experiment-Rückblick in der Gamifizierten AID-Umgebung freigeschaltet!" />
                 <RecapInfoBtn />
             </div>
         </div>

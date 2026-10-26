@@ -5,6 +5,7 @@
     import BadgeNavbar from './BadgeNavbar.vue';
     import BadgesOpen from './BadgesOpen.vue';
     import BadgesUnlocked from './BadgesUnlocked.vue';
+    import { unlockedBadges, displayBadges } from '../../storage/badgesList.js';
 
     const BadgeProperty = ref<'open' | 'unlocked'>('open');
 </script>
@@ -16,7 +17,7 @@
             <span style="font-size: 30px; font-weight: bold;">Abzeichen</span>
             <BadgeNavbar v-model="BadgeProperty" />
             <div class="buttons">
-                <ShareBtn />
+                <ShareBtn :text="`Ich habe ${unlockedBadges.length} von ${displayBadges.length} Abzeichen in der Gamifizierten AID-Umgebung freigeschaltet!`" />
                 <BadgeInfo />
             </div>
         </div>

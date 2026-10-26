@@ -1,14 +1,15 @@
 <script setup lang="ts">
     import { onBeforeUnmount, ref, watch } from 'vue'
-    import { streakIncreaseVersion } from '../../storage/streak.js'
+    import { streakBannerVisible, streakIncreaseVersion } from '../../storage/streak.js'
 
     // Streak Banner Visibility und Transtion
     const visible = ref(false)
     let hideTimeout: ReturnType<typeof setTimeout> | undefined
 
     watch(streakIncreaseVersion, () => {
+        streakBannerVisible.value = true
         visible.value = true
-    })
+    }, { flush: 'sync' })
 
     function hideAfterEnter() {
         hideTimeout = setTimeout(() => {
@@ -16,13 +17,18 @@
         }, 3000)
     }
 
+    function afterLeave() {
+        streakBannerVisible.value = false
+    }
+
     onBeforeUnmount(() => {
         if (hideTimeout) clearTimeout(hideTimeout)
+        streakBannerVisible.value = false
     })
 </script>
 
 <template>
-    <Transition name="banner" appear @after-enter="hideAfterEnter">
+    <Transition name="banner" appear @after-enter="hideAfterEnter" @after-leave="afterLeave">
         <div v-if="visible" class="banner">
             <!-- Icon-->
             <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" viewBox="0 0 24 24">

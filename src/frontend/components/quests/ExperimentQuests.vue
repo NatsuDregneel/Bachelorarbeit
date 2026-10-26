@@ -14,11 +14,10 @@
         { id: 'phase-share-progress', label: 'Teile deinen Fortschritt', current: experimentShareQuestProgress.value, target: 12 },
     ])
 
-    // the final quest counts the finished quests above
+    // the final quest counts all completed experiment quests
     const finalCurrent = computed(() =>
-        quests.value.filter(q => q.id !== 'phase-share-progress' && q.current >= q.target).length)
-    const finalTarget = computed(() =>
-        quests.value.filter(q => q.id !== 'phase-share-progress').length)
+        quests.value.filter(q => q.current >= q.target).length)
+    const finalTarget = computed(() => quests.value.length)
     const experimentQuestsComplete = computed(() => finalCurrent.value === finalTarget.value)
 
     watchEffect(() => {
@@ -26,6 +25,7 @@
             experimentMealQuestProgress.value,
             experimentSportQuestProgress.value,
             experimentAvatarQuestProgress.value,
+            experimentShareQuestProgress.value,
         )
     })
 

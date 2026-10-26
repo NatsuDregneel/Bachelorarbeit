@@ -1,10 +1,11 @@
 <script setup lang="ts">
     import { onBeforeUnmount, ref, watch } from 'vue'
-    import { completedQuestQueue } from '../../storage/questProgress.js'
+    import { completedQuestQueue, questBannerPending } from '../../storage/questProgress.js'
 
     const questLabels: Record<string, string> = {
         'daily-meals': 'Tägliche Mahlzeiten-Quest',
         'daily-sport': 'Tägliche Sport-Quest',
+        'daily-share': 'Tägliche Teilen-Quest',
         'experiment-meals': 'Experiment-Mahlzeiten-Quest',
         'experiment-sport': 'Experiment-Sport-Quest',
         'experiment-avatar': 'Avatar-Quest',
@@ -16,7 +17,12 @@
     let hideTimeout: ReturnType<typeof setTimeout> | undefined
 
     function showNextQuest(): void {
-        if (currentQuest.value || completedQuestQueue.value.length === 0) return
+        if (currentQuest.value) return
+        if (completedQuestQueue.value.length === 0) {
+            questBannerPending.value = false
+            return
+        }
+        questBannerPending.value = true
         currentQuest.value = completedQuestQueue.value.shift() ?? null
         visible.value = currentQuest.value !== null
     }

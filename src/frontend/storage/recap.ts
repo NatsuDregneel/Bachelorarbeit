@@ -33,8 +33,14 @@ export function checkRecapReached(streak: number): void {
     } catch { /* ignore */ }
 }
 
-export function checkExperimentQuestsReached(meals: number, sports: number, avatarChanges: number): void {
-    if (recapState.experimentQuestsReached || meals < 24 || sports < 3 || avatarChanges < 3) return
+export function checkExperimentQuestsReached(
+    meals: number,
+    sports: number,
+    avatarChanges: number,
+    shares: number,
+): void {
+    if (recapState.experimentQuestsReached ||
+        meals < 24 || sports < 3 || avatarChanges < 3 || shares < 12) return
 
     recapState.experimentQuestsReached = true
     try {

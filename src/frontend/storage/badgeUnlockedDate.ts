@@ -15,6 +15,7 @@ function load(): Record<string, string> {
 // badge id -> ISO date string of the moment it was unlocked
 export const unlockDates = reactive<Record<string, string>>(load())
 export const badgeUnlockQueue = ref<Array<{ id: string, unlockedAt: string }>>([])
+export const badgeBannerPending = ref(false)
 
 const metaBadgeIds = new Set(['badges1', 'badges2', 'badges3', 'badges4'])
 
@@ -40,6 +41,7 @@ export function getBadgeMilestoneProgress(id: string): number {
 function recordUnlock(id: string): void {
     const unlockedAt = new Date().toISOString()
     unlockDates[id] = unlockedAt
+    badgeBannerPending.value = true
     badgeUnlockQueue.value.push({ id, unlockedAt })
 }
 

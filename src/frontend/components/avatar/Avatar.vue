@@ -19,7 +19,7 @@
         <div class="header">
             <AvatarNavbar v-model="AvatarProperty" />
             <div class="buttons">
-                <ShareBtn />
+                <ShareBtn text="Ich habe meinen Avatar in der Gamifizierten AID-Umgebung gestaltet!" />
                 <AvatarInfo />
             </div>
         </div>

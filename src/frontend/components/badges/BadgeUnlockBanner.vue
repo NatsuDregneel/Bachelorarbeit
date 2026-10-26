@@ -1,13 +1,19 @@
 <script setup lang="ts">
     import { onBeforeUnmount, ref, watch } from 'vue'
     import { badges, tierColors } from '../../storage/badges.js'
-    import { badgeUnlockQueue } from '../../storage/badgeUnlockedDate.js'
+    import { badgeBannerPending, badgeUnlockQueue } from '../../storage/badgeUnlockedDate.js'
+    import { streakBannerVisible } from '../../storage/streak.js'
 
     const currentBadge = ref<(typeof badges)[number] | null>(null)
     let hideTimeout: ReturnType<typeof setTimeout> | undefined
 
     function showNextBadge(): void {
-        if (currentBadge.value || badgeUnlockQueue.value.length === 0) return
+        if (currentBadge.value || streakBannerVisible.value) return
+        if (badgeUnlockQueue.value.length === 0) {
+            badgeBannerPending.value = false
+            return
+        }
+        badgeBannerPending.value = true
 
         const event = badgeUnlockQueue.value.shift()
         if (!event) return
@@ -21,7 +27,10 @@
         currentBadge.value = badge
     }
 
-    watch(badgeUnlockQueue, showNextBadge, { deep: true, immediate: true })
+    watch([badgeUnlockQueue, streakBannerVisible], showNextBadge, {
+        deep: true,
+        immediate: true,
+    })
 
     function hideAfterEnter(): void {
         hideTimeout = setTimeout(() => {

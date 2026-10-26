@@ -6,6 +6,7 @@
     import RecapBanner from '../components/recap/RecapBanner.vue'
     import QuestCompleteBanner from '../components/quests/QuestCompleteBanner.vue'
     import { registerMealQuestProgress, registerSportQuestProgress } from '../storage/questProgress.js'
+    import { registerShareQuestProgress } from '../storage/questProgress.js'
 
     export default defineComponent({
         components: {
@@ -14,6 +15,9 @@
             AvatarSavedBanner,
             RecapBanner,
             QuestCompleteBanner,
+        },
+        provide() {
+            return { onShare: registerShareQuestProgress }
         },
         methods: {
             onMealAdded(n: number) {

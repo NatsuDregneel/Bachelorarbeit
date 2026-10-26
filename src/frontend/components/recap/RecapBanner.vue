@@ -1,13 +1,20 @@
 <script setup lang="ts">
     import { onBeforeUnmount, ref, watch } from 'vue'
     import { recapAvailable } from '../../storage/recap.js'
+    import { badgeBannerPending } from '../../storage/badgeUnlockedDate.js'
+    import { questBannerPending } from '../../storage/questProgress.js'
+    import { streakBannerVisible } from '../../storage/streak.js'
 
     const visible = ref(false)
     let hideTimeout: ReturnType<typeof setTimeout> | undefined
 
-    watch(recapAvailable, (available) => {
-        if (available) visible.value = true
-    })
+    watch(
+        [recapAvailable, questBannerPending, badgeBannerPending, streakBannerVisible],
+        ([available, questPending, badgePending, streakVisible]) => {
+            if (available && !questPending && !badgePending && !streakVisible) visible.value = true
+        },
+        { immediate: true, flush: 'sync' },
+    )
 
     function hideAfterEnter() {
         hideTimeout = setTimeout(() => {

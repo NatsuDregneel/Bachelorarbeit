@@ -16,7 +16,7 @@
             <span class="title" style="flex: 4;">T&aumlgliche Streak</span>
             <!-- Streak Header Buttons -->
             <div style="flex: 1;" class="buttons">
-                <ShareBtn />
+                <ShareBtn :text="`Ich trage seit ${getActiveStreak()} Tagen meine Werte in die Gamifizierte AID-Umgebung ein und habe dadurch eine Streak von ${getActiveStreak()} erreicht!`" />
                 <StreakInfo />
             </div>
         </div>

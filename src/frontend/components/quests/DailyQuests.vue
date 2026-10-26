@@ -10,7 +10,8 @@
     } from '../../storage/avatarCustomization.js'
     import { storageKey } from '../../storage/storageKey.js'
     import {
-        dailyMealQuestProgress, dailySportQuestProgress, refreshDailyMealQuestProgress,
+        dailyMealQuestProgress, dailyShareQuestProgress, dailySportQuestProgress,
+        refreshDailyMealQuestProgress,
     } from '../../storage/questProgress.js'
 
     type QuestReward = {
@@ -122,7 +123,7 @@
         {
             id: 'daily-share-progress',
             label: 'Teile deinen Fortschritt',
-            current: 0,
+            current: dailyShareQuestProgress.value,
             target: 1,
             reward: dailyRewards.value[2],
         },

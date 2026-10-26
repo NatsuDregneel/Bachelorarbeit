@@ -1,9 +1,10 @@
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { storageKey } from './storageKey.js'
 
 const DAILY_STORAGE_KEY = storageKey('daily-meal-quest-progress')
 const EXPERIMENT_STORAGE_KEY = storageKey('experiment-meal-quest-progress')
 const DAILY_SPORT_STORAGE_KEY = storageKey('daily-sport-quest-progress')
+const DAILY_SHARE_STORAGE_KEY = storageKey('daily-share-quest-progress')
 const EXPERIMENT_SPORT_STORAGE_KEY = storageKey('experiment-sport-quest-progress')
 const EXPERIMENT_AVATAR_STORAGE_KEY = storageKey('experiment-avatar-quest-progress')
 const EXPERIMENT_SHARE_STORAGE_KEY = storageKey('experiment-share-quest-progress')
@@ -46,14 +47,19 @@ function loadProgress(storageKey: string, maxProgress: number): number {
 export const dailyMealQuestProgress = ref(loadDailyCount(DAILY_STORAGE_KEY))
 export const experimentMealQuestProgress = ref(loadExperimentCount(EXPERIMENT_STORAGE_KEY))
 export const dailySportQuestProgress = ref(loadDailyCount(DAILY_SPORT_STORAGE_KEY))
+export const dailyShareQuestProgress = ref(loadDailyCount(DAILY_SHARE_STORAGE_KEY))
 export const experimentSportQuestProgress = ref(loadExperimentCount(EXPERIMENT_SPORT_STORAGE_KEY))
 export const experimentAvatarQuestProgress = ref(loadProgress(EXPERIMENT_AVATAR_STORAGE_KEY, 3))
 export const experimentShareQuestProgress = ref(loadProgress(EXPERIMENT_SHARE_STORAGE_KEY, 12))
 export const completedQuestQueue = ref<string[]>([])
+export const questBannerPending = ref(false)
 let progressDate = localDateKey(new Date())
 
 function enqueueOnCompletion(id: string, previous: number, current: number, target: number): void {
-    if (previous < target && current >= target) completedQuestQueue.value.push(id)
+    if (previous < target && current >= target) {
+        questBannerPending.value = true
+        completedQuestQueue.value.push(id)
+    }
 }
 
 export function refreshDailyMealQuestProgress(): void {
@@ -63,10 +69,12 @@ export function refreshDailyMealQuestProgress(): void {
     progressDate = today
     dailyMealQuestProgress.value = 0
     dailySportQuestProgress.value = 0
+    dailyShareQuestProgress.value = 0
     try {
         const resetProgress = JSON.stringify({ date: today, count: 0 })
         localStorage.setItem(DAILY_STORAGE_KEY, resetProgress)
         localStorage.setItem(DAILY_SPORT_STORAGE_KEY, resetProgress)
+        localStorage.setItem(DAILY_SHARE_STORAGE_KEY, resetProgress)
     } catch {
         // Keep the in-memory progress for the current session if storage is unavailable.
     }
@@ -134,13 +142,30 @@ export function registerAvatarQuestProgress(): void {
 }
 
 export function registerShareQuestProgress(): void {
-    if (experimentShareQuestProgress.value >= 12) return
+    refreshDailyMealQuestProgress()
 
-    const previous = experimentShareQuestProgress.value
-    experimentShareQuestProgress.value++
-    enqueueOnCompletion('experiment-share', previous, experimentShareQuestProgress.value, 12)
+    const previousDaily = dailyShareQuestProgress.value
+    if (previousDaily < 1) {
+        dailyShareQuestProgress.value = 1
+        enqueueOnCompletion('daily-share', previousDaily, dailyShareQuestProgress.value, 1)
+    }
+
+    const previousExperiment = experimentShareQuestProgress.value
+    if (previousExperiment < 12) {
+        experimentShareQuestProgress.value++
+        enqueueOnCompletion('experiment-share', previousExperiment, experimentShareQuestProgress.value, 12)
+    }
+
     try {
-        localStorage.setItem(EXPERIMENT_SHARE_STORAGE_KEY, String(experimentShareQuestProgress.value))
+        if (previousDaily < 1) {
+            localStorage.setItem(DAILY_SHARE_STORAGE_KEY, JSON.stringify({
+                date: progressDate,
+                count: dailyShareQuestProgress.value,
+            }))
+        }
+        if (previousExperiment < 12) {
+            localStorage.setItem(EXPERIMENT_SHARE_STORAGE_KEY, String(experimentShareQuestProgress.value))
+        }
     } catch {
         // Keep the in-memory progress for the current session if storage is unavailable.
     }
