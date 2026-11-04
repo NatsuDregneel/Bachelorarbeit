@@ -8,7 +8,6 @@
     import RecapUV3QuestsAvatar from './RecapUV3QuestsAvatar.vue';
 
     const selectedPhase = ref<'uv1' | 'uv2' | 'uv3'>('uv1');
-
 </script>
 
 <template>
@@ -18,7 +17,7 @@
             <span class="title">Experiment R&uumlblick</span>
             <RecapNavbar v-model="selectedPhase" />
             <div class="buttons">
-                <ShareBtn />
+                <ShareBtn text="Ich habe meinen Experiment-Rückblick in der Gamifizierten AID-Umgebung freigeschaltet!" />
                 <RecapInfoBtn />
             </div>
         </div>

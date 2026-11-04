@@ -1,4 +1,5 @@
-// values are estimates from the Figma screenshot; replace them with the exact hex codes
+/** This File contains the available options for avatar customization provided by DiceBear */
+
 export const skinColors = [
     'ffdfc0', 'fbd3c8', 'f4b09c', 'e58f7a', 'e8a672',
     'b96f5d', '965b4d', '7a4636', '633e34',

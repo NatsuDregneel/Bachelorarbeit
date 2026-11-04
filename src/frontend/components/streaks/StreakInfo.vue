@@ -36,7 +36,7 @@
             </button>
             <p v-if="showInfo" style="font-size: 15px;">Deine <span class="highlight">Streak</span> zeigt dir an, wie viel Tage infolge du aktiv an der <strong>Studie</strong> teilgenommen hast. 
                 <br/><br/>
-                Um deine <span class="highlight">Streak</span> am laufen zu halten musst du eine Mahlzeit, Bolus oder Sporteinheit eintragen.</p>
+                Um deine <span class="highlight">Streak</span> am laufen zu halten musst du eine Mahlzeit oder Sporteinheit eintragen.</p>
         </div>
 </template>
 

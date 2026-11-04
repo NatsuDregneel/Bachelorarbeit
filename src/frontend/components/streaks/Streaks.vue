@@ -27,7 +27,7 @@
                 Du hast eine aktive <span class="highlight">Streak</span>! Bleib dran und trage jeden Tag eine <strong>Mahlzeit</strong>, <strong>Sporteinheit</strong> oder <strong>Bolus</strong> ein, um deine <span class="highlightedorange">Streak</span> am Laufen zu halten!
             </p>
             <p v-else class="helptext">
-                Du hast noch keine aktive <span class="highlight">Streak</span>, trage eine <strong>Mahlzeit</strong>, <strong>Sporteinheit</strong> oder <strong>Bolus</strong> ein, um deine <span class="highlightedorange">Streak</span> zu starten!
+                Du hast noch keine aktive <span class="highlight">Streak</span>, trage eine <strong>Mahlzeit</strong> oder <strong>Sporteinheit</strong> ein, um deine <span class="highlightedorange">Streak</span> zu starten!
             </p>
         </div>
         <div class="calendar">

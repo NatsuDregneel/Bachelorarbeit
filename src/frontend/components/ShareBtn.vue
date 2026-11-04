@@ -18,22 +18,26 @@
         open.value = false
     }
 
+    /* Teilt den Inhalt per E-Mail */
     function viaMail(): void {
         window.location.href =
             `mailto:?subject=${encodeURIComponent(props.title)}&body=${encodeURIComponent(props.text)}`
         done()
     }
 
+    /* Teilt den Inhalt per SMS */
     function viaSms(): void {
         window.location.href = `sms:?&body=${encodeURIComponent(props.text)}`
         done()
     }
 
+    /* Teilt den Inhalt per WhatsApp */
     function viaWhatsApp(): void {
         window.open(`https://wa.me/?text=${encodeURIComponent(props.text)}`, '_blank', 'noopener')
         done()
     }
 
+    /* Kopiert den Inhalt in die Zwischenablage */
     async function copyText(): Promise<void> {
         try {
             await navigator.clipboard.writeText(props.text)
@@ -45,7 +49,7 @@
         setTimeout(() => { copyState.value = 'idle'; open.value = false }, 1200)
     }
 
-    // close on outside click and Escape
+    /* Schließt das Menü, wenn außerhalb geklickt wird oder Escape gedrückt wird */
     function onDocClick(e: MouseEvent): void {
         if (open.value && root.value && !root.value.contains(e.target as Node)) open.value = false
     }

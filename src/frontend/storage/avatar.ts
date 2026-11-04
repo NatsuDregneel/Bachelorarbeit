@@ -8,6 +8,7 @@ import {
 
 const STORAGE_KEY = storageKey('avatar-state')
 
+/** saved avatar state */
 export interface AvatarLook {
     seed: string
     skinColor: string      // hex without '#'
@@ -27,7 +28,7 @@ interface StoredAvatar extends AvatarLook {
     unlockedItems: string[]   // ids of locked options the user has earned
 }
 
-// defaults: the leftmost option of every row
+/** Sets the default values for the avatar state */
 const defaults: StoredAvatar = {
     seed: 'player',
     skinColor: skinColors[0],
@@ -44,16 +45,20 @@ const defaults: StoredAvatar = {
     unlockedItems: [],
 }
 
+// checks hexcodes
 const HEX = /^[0-9a-f]{6}$/i
 
+/** Returns a hex color string if its valid */
 function validHex(value: unknown, fallback: string): string {
     return typeof value === 'string' && HEX.test(value) ? value : fallback
 }
 
+/** Returns a valid option value or the fallback */
 function validOption(options: { value: string }[], value: unknown, fallback: string): string {
     return options.some(o => o.value === value) ? (value as string) : fallback
 }
 
+/** Loads the saved avatar state from localStorage, or an empty state if none is saved or the data is broken */
 function load(): StoredAvatar {
     try {
         const raw = localStorage.getItem(STORAGE_KEY)
@@ -81,17 +86,18 @@ function load(): StoredAvatar {
     return { ...defaults, unlockedItems: [] }
 }
 
+/** Saves the current avatar state to localStorage */
 function persist(): void {
     try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(avatarState))
     } catch { /* ignore */ }
 }
 
-// saved avatar
+// Saved avatar
 export const avatarState = reactive<StoredAvatar>(load())
 export const avatarSaveCount = ref(0)
 
-// working copy used by the creator
+// Working draft of the avatar, that was not saved yet 
 export const avatarDraft = reactive<AvatarLook>({
     seed: avatarState.seed,
     skinColor: avatarState.skinColor,
@@ -107,39 +113,41 @@ export const avatarDraft = reactive<AvatarLook>({
     headwear: avatarState.headwear,
 })
 
+/** Updates the avatar draft with selected changes */
 export function updateDraft(changes: Partial<AvatarLook>): void {
     Object.assign(avatarDraft, changes)
 }
 
+/** Assigns the avatar draft to the saved avatar */
 export function saveAvatar(): void {
     const changed = hasUnsavedChanges.value
     Object.assign(avatarState, avatarDraft)
     persist()
+    // increase save count to re-render avatar
     avatarSaveCount.value++
     if (changed) registerAvatarQuestProgress()
 }
 
-/** called by the quest system later, e.g. unlockItem('clothing-small') */
+/** Unlocks a new avatar customization */
 export function unlockItem(id: string): void {
     if (avatarState.unlockedItems.includes(id)) return
     avatarState.unlockedItems.push(id)
     persist()
 }
 
-// all fields of the look; the draft has exactly these keys
+// The keys of the avatar look, used to compare the draft with the saved avatar
 const lookKeys = Object.keys(avatarDraft) as (keyof AvatarLook)[]
 
-/** true as soon as the draft differs from the saved avatar */
+/** Returns true if there are unsaved avatar changes */
 export const hasUnsavedChanges = computed(() =>
     lookKeys.some(k => avatarDraft[k] !== avatarState[k]))
 
-/** throws the draft away and goes back to the saved avatar */
+/** Resets the avatar draft to the saved avatar */
 export function resetDraft(): void {
     for (const k of lookKeys) avatarDraft[k] = avatarState[k]
 }
 
-// native browser warning when the tab is closed or reloaded with unsaved changes;
-// browsers show their own generic text here, it cannot be customized
+/** Native browser warning when the tab is closed or reloaded with unsaved changes */
 window.addEventListener('beforeunload', (e) => {
     if (hasUnsavedChanges.value) {
         e.preventDefault()

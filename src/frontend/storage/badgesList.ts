@@ -5,7 +5,7 @@ import { mealEntryCount } from './mealBadgeProgress.js'
 import { sportEntryCount } from './sportBadgeProgress.js'
 import { getActiveStreak } from './streak.js'
 
-// all badges with their color and (if earned) the unlock date
+/** Returns the list of badges to show */
 export const displayBadges = computed(() =>
     badges.map(b => ({
         ...b,
@@ -18,10 +18,11 @@ export const displayBadges = computed(() =>
         unlockedAt: unlockDates[b.id] as string | undefined,
     })))
 
+/** Returns the list of open badges */
 export const openBadges = computed(() =>
     displayBadges.value.filter(b => !b.unlockedAt))
 
-// newest first
+/** Returns the list of unlocked badges */
 export const unlockedBadges = computed(() =>
     displayBadges.value
         .filter(b => b.unlockedAt)

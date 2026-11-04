@@ -2,7 +2,7 @@ import { computed } from 'vue'
 
 export type BadgeTier = 'blue' | 'bronze' | 'silver' | 'gold'
 
-// colors per tier; these are estimated values, replace them with the exact ones from Figma
+/** Badge tier colors */
 export const tierColors: Record<BadgeTier, string> = {
     blue: '#5B87E6',
     bronze: '#D08A4A',
@@ -10,7 +10,7 @@ export const tierColors: Record<BadgeTier, string> = {
     gold: '#F2C20F',
 }
 
-
+/** Badge data */
 export interface BadgeData {
     id: string;
     title: string;
@@ -20,6 +20,7 @@ export interface BadgeData {
     maxNumber: number;
 }
 
+/** List of all badges */
 export const badges: BadgeData[] = [
     {
         id: 'login',
